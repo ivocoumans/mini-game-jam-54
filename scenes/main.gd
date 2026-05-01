@@ -10,7 +10,8 @@ func _ready() -> void:
 		tree.planted.connect(_on_tree_planted)
 		tree.harvested.connect(_on_tree_harvested)
 	$NPCs/Capitalist.bananas_sold.connect(_on_bananas_sold)
-	$NPCs/Farmer.saplings_purchased.connect(_on_saplings_purchased)
+	$NPCs/Farmer.sapling_purchased.connect(_on_sapling_purchased)
+	$NPCs/Business.plot_purchased.connect(_on_plot_purchased)
 	$UI.update()
 	_refresh_world()
 
@@ -28,12 +29,20 @@ func _toggle_timeline() -> void:
 func _refresh_world() -> void:
 	$Objects/Barn.visible = GameState.is_future
 	$NPCs/Farmer.visible = GameState.is_future
-	$Objects/Stall.visible = !GameState.is_future
-	$NPCs/Capitalist.set_active(!GameState.is_future)
+	$Objects/Stall.visible = GameState.is_future
+	$NPCs/Capitalist.set_active(GameState.is_future)
+	
+	_update_trees()
 	
 	var trees = $Trees.get_children()
 	for tree in trees:
 		tree.toggle_state()
+
+
+func _update_trees() -> void:
+	var plots = $Trees.get_children()
+	for i in 9:
+		plots[i].set_active(i < GameState.plots)
 
 
 func _on_tree_planted() -> void:
@@ -48,8 +57,13 @@ func _on_bananas_sold() -> void:
 	$UI.update()
 
 
-func _on_saplings_purchased() -> void:
+func _on_sapling_purchased() -> void:
 	$UI.update()
+
+
+func _on_plot_purchased() -> void:
+	$UI.update()
+	_update_trees()
 
 
 func _input(event: InputEvent) -> void:

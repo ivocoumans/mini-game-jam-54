@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://bovkdm3ejoyo8"]
 
+[ext_resource type="Script" uid="uid://sfjg153p0i6h" path="res://scenes/characters/business.gd" id="1_5kv7s"]
 [ext_resource type="Texture2D" uid="uid://c1wojjqk5ha4q" path="res://assets/characters/business.png" id="1_sgdxj"]
 
-[node name="Business" type="Node2D" unique_id=991147967]
+[sub_resource type="CircleShape2D" id="CircleShape2D_swklc"]
+radius = 50.635956
+
+[node name="Business" type="Area2D" unique_id=829950786]
+script = ExtResource("1_5kv7s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=379442946]
 texture = ExtResource("1_sgdxj")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=24340503]
+shape = SubResource("CircleShape2D_swklc")

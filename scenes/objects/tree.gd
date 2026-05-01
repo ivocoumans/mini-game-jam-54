@@ -17,6 +17,18 @@ var region_size: Vector2 = Vector2(64, 128)
 var player_in_range: bool = false
 
 
+func toggle_state() -> void:
+	if state == TreeState.SAPLING and GameState.is_future == true:
+		_set_state(TreeState.HARVEST)
+	elif state == TreeState.HARVEST and GameState.is_future == false:
+		_set_state(TreeState.SAPLING)
+
+
+func set_active(is_active: bool) -> void:
+	visible = is_active
+	monitoring = is_active
+
+
 func _ready() -> void:
 	_update_sprite_region()
 	body_entered.connect(_on_body_entered)
@@ -50,13 +62,6 @@ func _on_body_exited(body: Node) -> void:
 func _set_state(new_state: TreeState) -> void:
 	state = new_state
 	_update_sprite_region()
-
-
-func toggle_state() -> void:
-	if state == TreeState.SAPLING and GameState.is_future == true:
-		_set_state(TreeState.HARVEST)
-	elif state == TreeState.HARVEST and GameState.is_future == false:
-		_set_state(TreeState.SAPLING)
 
 
 func _update_sprite_region() -> void:

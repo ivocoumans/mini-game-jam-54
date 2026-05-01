@@ -1,7 +1,7 @@
 extends Area2D
 
 
-signal sapling_purchased
+signal plot_purchased
 
 
 var player_in_range: bool = false
@@ -19,16 +19,16 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if player_in_range and Input.is_action_just_pressed("interact"):
-		_buy_all_saplings()
+		_buy_plot()
 
 
-func _buy_all_saplings() -> void:
-	if GameState.money < 5:
+func _buy_plot() -> void:
+	if GameState.money < 10:
 		return
 
-	GameState.saplings += 1
-	GameState.money -= 5
-	sapling_purchased.emit()
+	GameState.money -= 10
+	GameState.plots += 1
+	plot_purchased.emit()
 
 
 func _on_body_entered(body: Node) -> void:
