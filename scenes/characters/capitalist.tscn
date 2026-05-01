@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dolevyi7jve21"]
+
+[ext_resource type="Texture2D" uid="uid://boa04imf1xlgq" path="res://assets/characters/capitalist.png" id="1_eavj3"]
+[ext_resource type="Script" uid="uid://c4w00uss4my68" path="res://scenes/characters/capitalist.gd" id="1_i0txp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eavj3"]
+radius = 63.07139
+
+[node name="Capitalist" type="Area2D" unique_id=1087623159]
+script = ExtResource("1_i0txp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=379442946]
+texture = ExtResource("1_eavj3")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=994343644]
+shape = SubResource("CircleShape2D_eavj3")

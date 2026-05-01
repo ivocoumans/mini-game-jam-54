@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b2lk3dp125k15"]
+
+[ext_resource type="Script" uid="uid://0brcovf3mdlj" path="res://scenes/characters/farmer.gd" id="1_ltshc"]
+[ext_resource type="Texture2D" uid="uid://b0yr0mwp550g4" path="res://assets/characters/farmer.png" id="1_qylkb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltshc"]
+radius = 61.008198
+
+[node name="Farmer" type="Area2D" unique_id=542813445]
+script = ExtResource("1_ltshc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=379442946]
+texture = ExtResource("1_qylkb")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=509009689]
+shape = SubResource("CircleShape2D_ltshc")
