@@ -1,10 +1,10 @@
 extends Node
 
 var is_future: bool = false
-var money: int = 250
-var saplings: int = 5
-var bananas: int = 5
-var plots: int = 5
+var money: int = 0
+var saplings: int = 1
+var bananas: int = 0
+var plots: int = 0
 var max_plots: int = 9
 
 var _sapling_costs: Array[int] = [3, 4, 5, 6, 7, 8, 9, 9]
