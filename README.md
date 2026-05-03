@@ -1,4 +1,4 @@
-Play it here: [https://ivocoumans.github.io/mini-game-jam-54/](https://ivocoumans.github.io/mini-jame-gam-54/)
+Play it here: https://karzka.itch.io/chrono-banana-farm
 
 My entry to Mini Jame Gam #54.
 
