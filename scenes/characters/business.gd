@@ -26,7 +26,9 @@ func _process(_delta: float) -> void:
 
 func _buy_plot() -> void:
 	var cost: int = GameState.get_plot_cost()
-	if GameState.money < cost or GameState.plots >= GameState.max_plots:
+	var sapling_cost: int = GameState.get_sapling_cost()
+	var prevent_lock: bool = GameState.saplings <= 0 and GameState.money - cost < sapling_cost
+	if prevent_lock or GameState.money < cost or GameState.plots >= GameState.max_plots:
 		action_failed.emit()
 		return
 
@@ -39,12 +41,15 @@ func _buy_plot() -> void:
 func _update_text() -> void:
 	if player_in_range:
 		var cost: int = GameState.get_plot_cost()
-		if GameState.plots >= GameState.max_plots:
+		var sapling_cost: int = GameState.get_sapling_cost()
+		if GameState.money < cost:
+			$Label.text = "Need " + str(cost) + " gold to buy plot"
+		elif GameState.saplings <= 0 and GameState.money - cost < sapling_cost:
+			$Label.text = "You should buy a sapling first"
+		elif GameState.plots >= GameState.max_plots:
 			$Label.text = "No more plots available!"
 		elif GameState.money >= cost:
 			$Label.text = "[E] Buy plot for " + str(cost) + " gold?"
-		else:
-			$Label.text = "Need " + str(cost) + " gold to buy plot"
 	$Label.visible = player_in_range
 
 
